@@ -16,12 +16,24 @@ export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
 %:
 	dh $@
 
-override_dh_auto_configure:
+.PHONY: verify-version
+verify-version:
+	@package_version="$$(dpkg-parsechangelog -SVersion | sed 's/-[^-]*$$//')"; \
+	application_version="$$(sed -n 's/^set(FLAMESHOT_VERSION \([^)]*\)).*/\1/p' CMakeLists.txt)"; \
+	if [ "$$package_version" != "$$application_version" ]; then \
+		echo "Package version $$package_version does not match Flameshot $$application_version" >&2; \
+		exit 1; \
+	fi
+
+override_dh_auto_configure: verify-version
 	# The existence of an empty .git directory triggers syncqt.
 	mkdir .git || true
 	# This is required to use Cmake FetchContent
 	dh_auto_configure -- \
 		-DFETCHCONTENT_FULLY_DISCONNECTED=OFF
+
+override_dh_gencontrol: verify-version
+	dh_gencontrol
 
 override_dh_auto_install:
 	dh_auto_install
