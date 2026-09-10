@@ -30,6 +30,7 @@
 #include <QApplication>
 #include <QDir>
 #include <QLibraryInfo>
+#include <QLocale>
 #include <QNetworkProxyFactory>
 #include <QSharedMemory>
 #include <QTimer>
@@ -111,7 +112,19 @@ QSharedMemory* guiMutexLock()
 
 void configureTranslation(QTranslator& translator, QTranslator& qtTranslator)
 {
-    bool foundTranslation;
+    const QString configuredLanguage = ConfigHandler().uiLanguage();
+    const QLocale locale = configuredLanguage == QStringLiteral("auto")
+                             ? QLocale::system()
+                             : QLocale(configuredLanguage);
+
+    // English is the source language, so there is no translation to load.
+    // The C locale also uses the source strings.
+    if (locale.language() == QLocale::English ||
+        locale.language() == QLocale::C) {
+        return;
+    }
+
+    bool foundTranslation = false;
     // Configure translations
     for (const QString& path : PathInfo::translationsPaths()) {
         if (ConfigHandler().uiLanguage() == QStringLiteral("auto")) {
