@@ -81,7 +81,7 @@ static QMap<class QString, QSharedPointer<ValueHandler>>
     OPTION("disabledTrayIcon"            ,Bool               ( false         )),
     OPTION("historyConfirmationToDelete" ,Bool               ( true          )),
 #if !defined(DISABLE_UPDATE_CHECKER)
-    OPTION("checkForUpdates"             ,Bool               ( true          )),
+    OPTION("checkForUpdates"             ,Bool               ( false         )),
 #endif
     OPTION("allowMultipleGuiInstances"   ,Bool               ( false         )),
     OPTION("showMagnifier"               ,Bool               ( false         )),
