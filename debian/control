@@ -34,6 +34,7 @@ Depends:
  libqt6network6 (>= 6.2.4~),
  libqt6widgets6 (>= 6.2.4~),
  libqt6svg6 (>= 6.2.4~),
+ qt6-svg-plugins (>= 6.2.4~),
 Recommends:
  xdg-desktop-portal-gtk | xdg-desktop-portal-gnome | xdg-desktop-portal-kde | xdg-desktop-portal-wlr,
  grim,
