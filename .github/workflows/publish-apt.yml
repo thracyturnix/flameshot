@@ -42,6 +42,12 @@ jobs:
         run: |
           DEBIAN_FRONTEND=noninteractive mk-build-deps -i -r \
             -t "apt-get -y --no-install-recommends" debian/control
+      - name: Give each build a newer package version
+        run: |
+          # e.g. 14.0.0+thracyturnix-1 becomes 14.0.0+thracyturnix-<run number>,
+          # so every published build is an upgrade without editing the changelog.
+          sed -i "1s/^\(flameshot ([^)]*\)-[0-9]*)/\1-${GITHUB_RUN_NUMBER})/" debian/changelog
+          head -1 debian/changelog
       - name: Build Debian package
         run: |
           dpkg-buildpackage -us -uc -b
