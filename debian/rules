@@ -19,7 +19,7 @@ export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
 .PHONY: verify-version
 verify-version:
 	@package_version="$$(dpkg-parsechangelog -SVersion | sed 's/-[^-]*$$//')"; \
-	application_version="$$(sed -n 's/^set(FLAMESHOT_VERSION \([^)]*\)).*/\1/p' CMakeLists.txt)"; \
+	application_version="$$(sed -n 's/^set(FLAMESHOT_VERSION \([^)]*\)).*/\1/p' CMakeLists.txt)$$(sed -n 's/^set(FLAMESHOT_VERSION_SUFFIX "\([^"]*\)").*/\1/p' CMakeLists.txt)"; \
 	if [ "$$package_version" != "$$application_version" ]; then \
 		echo "Package version $$package_version does not match Flameshot $$application_version" >&2; \
 		exit 1; \

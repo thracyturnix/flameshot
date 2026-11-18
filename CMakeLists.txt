@@ -2,9 +2,11 @@ cmake_minimum_required(VERSION 3.22)
 # cmake_policy(SET CMP0076 OLD)
 
 set(FLAMESHOT_VERSION 14.0.0)
+# Identifies this build as the thracyturnix fork rather than upstream Flameshot.
+set(FLAMESHOT_VERSION_SUFFIX "+thracyturnix")
 
-# Flameshot-org
-set(GIT_API_URL "https://api.github.com/repos/flameshot-org/flameshot/releases/latest")
+# Check the fork, not flameshot-org, for new releases
+set(GIT_API_URL "https://api.github.com/repos/thracyturnix/flameshot/releases/latest")
 
 project(
   flameshot

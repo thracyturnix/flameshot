@@ -1,3 +1,12 @@
+flameshot (14.0.0+thracyturnix-1) unstable; urgency=medium
+
+  * thracyturnix fork of Flameshot 14.0.0: blue app icon, Imgur uploader
+    restored by default, no translation lookup for English.
+  * Mark the fork in the version shown in About and --version.
+  * Check the fork, not flameshot-org, for new releases.
+
+ -- thracyturnix <73801221+thracyturnix@users.noreply.github.com>  Wed, 18 Nov 2026 14:46:02 +1030
+
 flameshot (14.0.0-1) unstable; urgency=medium
 
   * Release for v14.0.0
