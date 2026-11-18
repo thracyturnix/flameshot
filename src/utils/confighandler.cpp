@@ -107,8 +107,8 @@ static QMap<class QString, QSharedPointer<ValueHandler>>
     OPTION("undoLimit"                   ,BoundedInt         ( 0, 999, 100   )),
     // Interface tab
     OPTION("uiLanguage"                  ,String             ( "auto"        )),
-    OPTION("uiColor"                     ,Color              ( {116, 0, 150} )),
-    OPTION("contrastUiColor"             ,Color              ( {39, 0, 50}   )),
+    OPTION("uiColor"                     ,Color              ( {10, 132, 255} )),
+    OPTION("contrastUiColor"             ,Color              ( {6, 71, 137}   )),
     OPTION("contrastOpacity"             ,BoundedInt         ( 0, 255, 190   )),
     OPTION("buttons"                     ,ButtonList         ( {}            )),
     // Filename Editor tab
